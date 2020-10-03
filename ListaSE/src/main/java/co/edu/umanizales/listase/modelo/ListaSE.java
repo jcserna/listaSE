@@ -9,38 +9,29 @@ package co.edu.umanizales.listase.modelo;
  *
  * @author Camilo
  */
-public class ListaSE
-{
+public class ListaSE {
 
     private Nodo cabeza;
 
-    public ListaSE()
-    {
+    public ListaSE() {
     }
 
-    public Nodo getCabeza()
-    {
+    public Nodo getCabeza() {
         return cabeza;
     }
 
-    public void setCabeza(Nodo cabeza)
-    {
+    public void setCabeza(Nodo cabeza) {
         this.cabeza = cabeza;
     }
 
-    public void adicionarNodo(Perro dato)
-    {
-        if (cabeza == null)
-        {
+    public void adicionarNodo(Perro dato) {
+        if (cabeza == null) {
             //No tiene perros
             cabeza = new Nodo(dato);
-        }
-        else
-        {
+        } else {
             // tiene perros
             Nodo temp = cabeza;
-            while (temp.getSiguiente() != null)
-            {
+            while (temp.getSiguiente() != null) {
                 temp = temp.getSiguiente();
             }
             //Ubicado o parado en el último
@@ -48,65 +39,48 @@ public class ListaSE
         }
     }
 
-    public int contarNodos()
-    {
+    public int contarNodos() {
 
-        if (cabeza != null)
-        {
+        if (cabeza != null) {
             Nodo temp = cabeza;
             int cont = 1;
 
-            while (temp.getSiguiente() != null)
-            {
+            while (temp.getSiguiente() != null) {
                 temp = temp.getSiguiente();
                 cont++;
             }
             return cont;
-        }
-        else
-        {
+        } else {
             return 0;
         }
     }
 
-    public void adicionarNodoInicio(Perro perro)
-    {
-        if (cabeza != null)
-        {
+    public void adicionarNodoInicio(Perro perro) {
+        if (cabeza != null) {
             Nodo temp = new Nodo(perro);
             temp.setSiguiente(cabeza);
             cabeza = temp;
-        }
-        else
-        {
+        } else {
             cabeza = new Nodo(perro);
         }
     }
 
-    public void eliminarNodo(byte numero)
-    {
+    public void eliminarNodo(byte numero) {
         Nodo anterior = cabeza;
 
-        if (anterior.getDato().getNumero() == numero)
-        {
+        if (anterior.getDato().getNumero() == numero) {
             //Eliminar cabeza
             cabeza = anterior.getSiguiente();
-        }
-        else
-        {
+        } else {
             //Mientras el siguiente del ayudante tenga un numero diferente al id
             //sigue pasano de nodo a nodo hasta que el id del nodo coincida con el ingresado                
-            while (anterior.getSiguiente().getDato().getNumero() != numero)
-            {
+            while (anterior.getSiguiente().getDato().getNumero() != numero) {
                 anterior = anterior.getSiguiente();
             }
             //Si el seiguiente del nodo encontrado en el ciclo es null, se debe eliminar el anterior al nodo
-            if (anterior.getSiguiente().getSiguiente() == null)
-            {
+            if (anterior.getSiguiente().getSiguiente() == null) {
                 anterior.setSiguiente(null);
-            }
-            else
-            {
+            } else {
                 anterior.setSiguiente(anterior.getSiguiente().getSiguiente());
 
             }
@@ -114,10 +88,8 @@ public class ListaSE
 
     }
 
-    public void invertir()
-    {
-        if (cabeza != null)
-        {
+    public void invertir() {
+        if (cabeza != null) {
             ListaSE listaTemporal = new ListaSE();
             Nodo temp = cabeza;
             while (temp != null)//Recorre de principio a fin
@@ -129,13 +101,10 @@ public class ListaSE
         }
     }
 
-    public void intercambiarExtremos()
-    {
-        if (cabeza != null)
-        {
+    public void intercambiarExtremos() {
+        if (cabeza != null) {
             Nodo temp = cabeza;
-            while (temp.getSiguiente() != null)
-            {
+            while (temp.getSiguiente() != null) {
                 temp = temp.getSiguiente();
             }
             /// Parado en el último nodo
@@ -145,95 +114,55 @@ public class ListaSE
         }
     }
 
-    public Nodo encontrarPosicion(byte numeroNodo)
-    {
-       
+    public Perro encontrarPosicion(byte numeroNodo) {
 
-//        if (pos <= contarNodos())
-//        {
-        int cont = 1;
-        Nodo temp = cabeza;
-        Nodo pos=cabeza;
-        byte posicion=1;
-        
-        while (pos!=temp){
-            posicion++;
-            
-        }
-        while (temp.getSiguiente() != null) //Mientras el lazo este lleno
-        {
-            if (cont == numeroNodo)
-            {
-                return temp;
-            }
-            else
-            {
-                temp = temp.getSiguiente(); // Ayudante pase al siguiente perro
+        if (cabeza != null) {
+            Nodo temp = cabeza;
+            int cont = 1;
+            while (numeroNodo != cont) {
+                temp = temp.getSiguiente();
                 cont++;
             }
+            return temp.getDato();
         }
-        return temp;
-//        }
-//        else
-//        {
-//            return null;
-//        }
+        return null;
     }
 
-    public void filtrarGenero(String genero)
-    {
+    public void filtrarGenero(String genero) {
         Nodo temp = cabeza;
         ListaSE nuevaLista = new ListaSE();
-        if (genero.equalsIgnoreCase("macho"))
-        {
-            while (temp.getSiguiente() != null)
-            {
-                if (temp.getDato().getGenero().equalsIgnoreCase("macho"))
-                {
+        if (genero.equalsIgnoreCase("macho")) {
+            while (temp != null) {
+                if (temp.getDato().getGenero().equalsIgnoreCase("macho")) {
                     nuevaLista.adicionarNodoInicio(temp.getDato());
-                }
-                else if (temp.getDato().getGenero().equalsIgnoreCase("hembra"))
-                {
+                } else if (temp.getDato().getGenero().equalsIgnoreCase("hembra")) {
                     nuevaLista.adicionarNodo(temp.getDato());
                 }
                 temp = temp.getSiguiente();
             }
-            if (temp.getDato().getGenero().equalsIgnoreCase("macho"))
-                {
+//            if (temp.getDato().getGenero().equalsIgnoreCase("macho")) {
+//                nuevaLista.adicionarNodoInicio(temp.getDato());
+//            } else if (temp.getDato().getGenero().equalsIgnoreCase("hembra")) {
+//                nuevaLista.adicionarNodo(temp.getDato());
+//            }
+            cabeza = nuevaLista.getCabeza();
+        } else if (genero.equalsIgnoreCase("hembra")) {
+            while (temp != null) {
+                if (temp.getDato().getGenero().equalsIgnoreCase("hembra")) {
                     nuevaLista.adicionarNodoInicio(temp.getDato());
-                }
-                else if (temp.getDato().getGenero().equalsIgnoreCase("hembra"))
-                {
-                    nuevaLista.adicionarNodo(temp.getDato());
-                }
-           cabeza = nuevaLista.getCabeza();
-        }
-        else if (genero.equalsIgnoreCase("hembra"))
-        {
-            while (temp.getSiguiente() != null)
-            {
-                if (temp.getDato().getGenero().equalsIgnoreCase("hembra"))
-                {
-                    nuevaLista.adicionarNodoInicio(temp.getDato());
-                }
-                else if (temp.getDato().getGenero().equalsIgnoreCase("macho"))
-                {
+                } else if (temp.getDato().getGenero().equalsIgnoreCase("macho")) {
                     nuevaLista.adicionarNodo(temp.getDato());
                 }
                 temp = temp.getSiguiente();
             }
-            if (temp.getDato().getGenero().equalsIgnoreCase("hembra"))
-                {
-                    nuevaLista.adicionarNodoInicio(temp.getDato());
-                }
-                else if (temp.getDato().getGenero().equalsIgnoreCase("macho"))
-                {
-                    nuevaLista.adicionarNodo(temp.getDato());
-                }
+//            if (temp.getDato().getGenero().equalsIgnoreCase("hembra")) {
+//                nuevaLista.adicionarNodoInicio(temp.getDato());
+//            } else if (temp.getDato().getGenero().equalsIgnoreCase("macho")) {
+//                nuevaLista.adicionarNodo(temp.getDato());
+//            }
             cabeza = nuevaLista.getCabeza();
         }
 
     }
-
 
 }

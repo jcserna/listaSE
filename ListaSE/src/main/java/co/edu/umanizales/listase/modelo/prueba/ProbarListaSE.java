@@ -5,6 +5,7 @@
  */
 package co.edu.umanizales.listase.modelo.prueba;
 
+import co.edu.umanizales.listase.modelo.ListaDE;
 import co.edu.umanizales.listase.modelo.ListaSE;
 import co.edu.umanizales.listase.modelo.Perro;
 
@@ -16,21 +17,36 @@ import co.edu.umanizales.listase.modelo.Perro;
 public class ProbarListaSE{
         public static void main(String... args)
         {
-            ListaSE listaPerros = new ListaSE();
-            Perro lulu = new  Perro("Lulú", (byte)1, (byte)9,"hembra");
-            listaPerros.adicionarNodo(lulu);
+//            ListaSE listaPerros = new ListaSE();
+//            Perro lulu = new  Perro("Lulú", (byte)1, (byte)9,"hembra");
+//            listaPerros.adicionarNodo(lulu);
+////            
+////              Perro firulais = new  Perro("Firulais", (byte)2, (byte)4,"macho");
+////            listaPerros.adicionarNodo(firulais);
+////            
+////              Perro pastor = new  Perro("Tobby", (byte)3, (byte)6,"macho");
+////            listaPerros.adicionarNodo(pastor);
+//            
+//    listaPerros.eliminarNodo((byte)1);
+//            System.out.println("datos: "+listaPerros.contarNodos());
             
-              Perro firulais = new  Perro("Firulais", (byte)2, (byte)4,"macho");
-            listaPerros.adicionarNodo(firulais);
+            ListaDE listaPerrosDE = new ListaDE();
             
+//               ListaSE listaPerros = new ListaSE();
+//            Perro lulu = new  Perro("Lulú", (byte)1, (byte)9,"hembra");
+//            listaPerrosDE.adicionarNodoDE(lulu);
+//            
+//              Perro firulais = new  Perro("Firulais", (byte)5, (byte)4,"macho");
+//            listaPerrosDE.adicionarNodoDE(firulais);
+//            
               Perro pastor = new  Perro("Tobby", (byte)3, (byte)6,"macho");
-            listaPerros.adicionarNodo(pastor);
+            listaPerrosDE.adicionarNodoDE(pastor);
             
-    listaPerros.filtrarGenero("macho");
-     
+            listaPerrosDE.eliminarPosicionDE((byte)1);
+          
+            System.out.println(listaPerrosDE.contarNodosDE());
             
-            System.out.println(listaPerros.encontrarPosicion((byte )1).getDato().getNombre());
-      
+//System.out.println(listaPerrosDE);
             
         }
     
