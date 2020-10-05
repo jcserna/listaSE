@@ -42,7 +42,7 @@ public class ProbarListaSE{
               Perro pastor = new  Perro("Tobby", (byte)8, (byte)6,"macho");
             listaPerrosDE.adicionarNodoDE(pastor);
             
-            listaPerrosDE.eliminarActualDE((byte)8);
+            listaPerrosDE.intercambiarPorPosicion(2, 3);
           
             System.out.println(listaPerrosDE.mostrarDatos());
             

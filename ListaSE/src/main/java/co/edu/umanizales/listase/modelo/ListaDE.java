@@ -187,23 +187,27 @@ public String mostrarDatos() {
         return mensaje;
     }
     
-    public void intercambiarDatos(byte pos1, byte pos2){
-        if (cabeza != null){
-            byte contador1=1;
-            byte contador2=1;
-            NodoDE temp1=cabeza;
-            NodoDE temp2=cabeza;
-            
-            while (contador1!=pos1){
-                temp1=temp1.getSiguiente();
-                contador1++;
-                
-                while(contador2!=pos2){
-                    temp2= temp2.getSiguiente();
-                    
-                }
-            }
+    public void intercambiarPosiciones(int pos1, int pos2) {
+        byte cont1 = 1;
+        byte cont2 = 1;
+        NodoDE temp1 = cabeza;
+        NodoDE temp2 = cabeza;
+
+        //Ubicar el temporal 1 en la posicion 1 buscada
+        while (cont1 != pos1) {
+            temp1 = temp1.getSiguiente();
+            cont1++;
         }
+        //Ubicar el temporal 1 en la posicion 2 buscada
+        while (cont2 != pos2) {
+            temp2 = temp2.getSiguiente();
+            cont2++;
+        }
+
+        //Tomar los datos (lo que hay dentro de los nodos) e intercambiarlos, los nodos no se mueven 
+        Perro perrotemp = temp1.getDato();
+        temp1.setDato(temp2.getDato());
+        temp2.setDato(perrotemp);
     }
     
 }
