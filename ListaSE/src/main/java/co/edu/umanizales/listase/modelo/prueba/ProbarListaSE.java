@@ -32,19 +32,19 @@ public class ProbarListaSE{
             
             ListaDE listaPerrosDE = new ListaDE();
             
-//               ListaSE listaPerros = new ListaSE();
-//            Perro lulu = new  Perro("Lulú", (byte)1, (byte)9,"hembra");
-//            listaPerrosDE.adicionarNodoDE(lulu);
-//            
-//              Perro firulais = new  Perro("Firulais", (byte)5, (byte)4,"macho");
-//            listaPerrosDE.adicionarNodoDE(firulais);
-//            
-              Perro pastor = new  Perro("Tobby", (byte)3, (byte)6,"macho");
+               ListaSE listaPerros = new ListaSE();
+            Perro lulu = new  Perro("Lulú", (byte)4, (byte)9,"hembra");
+            listaPerrosDE.adicionarNodoDE(lulu);
+            
+              Perro firulais = new  Perro("Firulais", (byte)5, (byte)4,"macho");
+            listaPerrosDE.adicionarNodoDE(firulais);
+            
+              Perro pastor = new  Perro("Tobby", (byte)8, (byte)6,"macho");
             listaPerrosDE.adicionarNodoDE(pastor);
             
-            listaPerrosDE.eliminarPosicionDE((byte)1);
+            listaPerrosDE.eliminarActualDE((byte)8);
           
-            System.out.println(listaPerrosDE.contarNodosDE());
+            System.out.println(listaPerrosDE.mostrarDatos());
             
 //System.out.println(listaPerrosDE);
             
