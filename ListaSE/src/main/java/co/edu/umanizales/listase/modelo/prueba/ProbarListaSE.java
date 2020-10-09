@@ -40,11 +40,10 @@ public class ProbarListaSE{
             listaPerrosDE.adicionarNodoDE(firulais);
             
               Perro pastor = new  Perro("Tobby", (byte)8, (byte)6,"macho");
-            listaPerrosDE.adicionarNodoDE(pastor);
+           // listaPerrosDE.adicionarNodoDE(pastor);
             
-            listaPerrosDE.intercambiarPosiciones(2, 3);
-          
-            System.out.println(listaPerrosDE.mostrarDatos());
+          listaPerrosDE.agregarNodo(2, pastor);
+         System.out.println(listaPerrosDE.mostrarDatos());
             
 //System.out.println(listaPerrosDE);
             

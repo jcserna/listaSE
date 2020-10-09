@@ -105,31 +105,46 @@ public class ListaDE {
 //}
        public void eliminarActualDE(byte numeroPerro) {
 
+        
+        //Preguntar si la lista es vacía
         if (cabeza != null) {
+            
+            //Si el unico dato es cabeza, eliminarlo
             if (cabeza.getSiguiente() == null) {
                 cabeza = null;
-//            ListaDE nueva=new ListaDE();
+
             }
+            //Sino crear un ayudante y ubicarlo en cabeza
             else{
 
             NodoDE temp = cabeza;
         
-
+            //Si el temp(cabeza) tiene el mismo numero del parametro ingresado, se debe eliminar el primero
             if (numeroPerro == temp.getDato().getNumero()) {
-                //Eliminar cabeza
-
-                cabeza = temp.getSiguiente();
-
-                cabeza.setAnterior(null);
                 
+                //Cabeza se convierte en el siguiente al temporal
+                cabeza = temp.getSiguiente();
+                
+                //Se suelta el anterior 
+                cabeza.setAnterior(null);
+                temp.setSiguiente(null);
+                
+                
+                //si no es el primero
             } else {
+                
+                //Recorre la lista hasta que el parametro ingresado sea ifual al numero de temp
                 while (temp.getDato().getNumero() != numeroPerro) {
                     temp = temp.getSiguiente();
         
                 }
+                //Si se debe eliminar el ultimo, se suelta el temporal
                 if (temp.getSiguiente() == null) {
                     temp.getAnterior().setSiguiente(null);
+                    temp.setAnterior(null);
 
+                //Sino el lazo siguiente al temporal lo ubica en el anterior
+                // y enlaza el anterior con el siguiente 
                 } else {
                     temp.getSiguiente().setAnterior(temp.getAnterior());
                     temp.getAnterior().setSiguiente(temp.getSiguiente());
@@ -209,5 +224,38 @@ public String mostrarDatos() {
         temp1.setDato(temp2.getDato());
         temp2.setDato(perrotemp);
     }
+    
+    
+    //Pedir la posición en donde va a ir el nodo
+    //Preguntar si la lista esta vacía
+    //  Si está vacía, ubicar el nodo en la cabeza
+    //Si la posicion dada es igual a 1 agregar el nodo en la primera posición, con cabeza.setAnterior nodo nuevo 
+    //nodo nuevo.set siguiente cabeza
+    // Hacer cabeza igual a nodo nuevo
+    //Agragar un contador que inicie en 0 y un temporal para recorrer la  lista
+    //Recorrer la lista
+    //En caso que el contador sea igual a la psoición menos 1, ubicase ahí
+    //al siguiente del temporal cambiar el lazo anterior y unirlo con el nodo nuevo
+    // y el nodo nuevo cambiar el lazo siguiente por el seiguiente a temporal 
+    //Al nodo nuevo cambiar el lazo anterior por el temporal
+    //A temporal cambiar el seguiente por el nodo nuevo
+    
+    public void agregarNodo (int pos, Perro dato){
+          byte cont = 0;
+          NodoDE temp = cabeza;
+          NodoDE nuevo = new NodoDE(dato);
+          
+          while (cont != pos) {
+            temp = temp.getSiguiente();
+            cont++;
+        }
+          temp.setSiguiente(nuevo);
+          nuevo.setSiguiente(temp.getSiguiente().getSiguiente());
+          temp.getSiguiente().setAnterior(nuevo);
+          nuevo.setAnterior(temp);
+        
+                 
+          
+        }
     
 }
