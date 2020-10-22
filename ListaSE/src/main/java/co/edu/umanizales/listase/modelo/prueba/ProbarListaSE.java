@@ -5,18 +5,18 @@
  */
 package co.edu.umanizales.listase.modelo.prueba;
 
+import co.edu.umanizales.listase.modelo.ListaCircularDE;
 import co.edu.umanizales.listase.modelo.ListaDE;
 import co.edu.umanizales.listase.modelo.ListaSE;
 import co.edu.umanizales.listase.modelo.Perro;
-
 
 /**
  *
  * @author Camilo
  */
-public class ProbarListaSE{
-        public static void main(String... args)
-        {
+public class ProbarListaSE {
+
+    public static void main(String... args) {
 //            ListaSE listaPerros = new ListaSE();
 //            Perro lulu = new  Perro("Lulú", (byte)1, (byte)9,"hembra");
 //            listaPerros.adicionarNodo(lulu);
@@ -29,24 +29,40 @@ public class ProbarListaSE{
 //            
 //    listaPerros.eliminarNodo((byte)1);
 //            System.out.println("datos: "+listaPerros.contarNodos());
-            
-            ListaDE listaPerrosDE = new ListaDE();
-            
-               ListaSE listaPerros = new ListaSE();
-            Perro lulu = new  Perro("Lulú", (byte)4, (byte)9,"hembra");
-            listaPerrosDE.adicionarNodoDE(lulu);
-            
-              Perro firulais = new  Perro("Firulais", (byte)5, (byte)4,"macho");
-            listaPerrosDE.adicionarNodoDE(firulais);
-            
-              Perro pastor = new  Perro("Tobby", (byte)8, (byte)6,"macho");
-           // listaPerrosDE.adicionarNodoDE(pastor);
-            
-          listaPerrosDE.agregarNodo(2, pastor);
-         System.out.println(listaPerrosDE.mostrarDatos());
-            
-//System.out.println(listaPerrosDE);
-            
-        }
-    
+
+//            ListaDE listaPerrosDE = new ListaDE();
+//            ListaCircularDE listaCircular = new ListaCircularDE();
+//            
+//               ListaSE listaPerros = new ListaSE();
+//            Perro lulu = new  Perro("Lulú", (byte)4, (byte)9,"hembra");
+//            listaPerrosDE.adicionarNodoDE(lulu);
+//            
+//              Perro firulais = new  Perro("Firulais", (byte)5, (byte)4,"macho");
+//            listaPerrosDE.adicionarNodoDE(firulais);
+//            
+//              Perro pastor = new  Perro("Tobby", (byte)8, (byte)6,"macho");
+//            listaPerrosDE.adicionarNodoDE(pastor);
+//            
+//          listaPerrosDE.intercambiarPosiciones(1, 2);
+//         System.out.println(listaPerrosDE.mostrarDatos());
+//            
+        ListaCircularDE listaCircular = new ListaCircularDE();
+
+        Perro lulu = new Perro("Lulú", (byte) 1, (byte) 9, "hembra");
+        listaCircular.adicionarListaCircularDE(lulu);
+
+        Perro firulais = new Perro("Firulais", (byte) 2, (byte) 4, "macho");
+        listaCircular.adicionarListaCircularDE(firulais);
+//        
+        Perro pastor = new Perro("Tobby", (byte) 3, (byte) 6, "macho");
+        listaCircular.adicionarListaCircularDE(pastor);
+
+        listaCircular.adicionarListaCircularDE(new Perro("robin", (byte) 4, (byte) 5, "macho"));
+        //System.out.println(listaPerros.encontrarPosicion(4).getDato().getNombre());
+        //listaPerros.adicionarNodoPorPosicion(3, new Perro("robin", (byte)4, (byte)5,"macho"));
+        
+        System.out.println(listaCircular.sumarAlReves("par"));
+
+    }
+
 }
