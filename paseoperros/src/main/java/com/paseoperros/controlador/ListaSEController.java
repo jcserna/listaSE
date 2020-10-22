@@ -32,7 +32,7 @@ import org.primefaces.model.diagram.overlay.LabelOverlay;
 public class ListaSEController implements Serializable {
 
     private ListaSE listaPerros;
-    private Perro perroMostrar;
+    private Perro perroMostrar ;
     private Nodo temp;
     private byte numero;
     private Perro perroEncontrado;
@@ -149,9 +149,19 @@ public class ListaSEController implements Serializable {
     }
 
     public void eliminar(byte numero) {
-        listaPerros.eliminarNodo(numero);
-        irPrimero();
-    }
+//        listaPerros.eliminarNodo(numero);
+        
+        if(temp.getSiguiente() != null){    
+        listaPerros.eliminarNodo(numero);       
+            irPrimero();
+            inicializarModelo();
+        }else{
+            listaPerros.eliminarNodo(numero);
+            perroMostrar = new Perro();
+            inicializarModelo();
+            
+            
+    }}
 
     public void encontrarPerro() {
 
@@ -288,6 +298,7 @@ public class ListaSEController implements Serializable {
             model.setDefaultConnector(connector);
             for (int i = 0; i < model.getElements().size() - 1; i++) {
                 model.connect(createConnection(model.getElements().get(i).getEndPoints().get(0), model.getElements().get(i + 1).getEndPoints().get(1), null));
+               
             }
         }
     }
