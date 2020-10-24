@@ -32,6 +32,7 @@ import org.primefaces.model.diagram.overlay.LabelOverlay;
 @Named(value = "listaDEController")
 @SessionScoped
 public class ListaDEController implements Serializable {
+
     private ListaDE listaPerrosDE;
     private Perro perroMostrar;
     private NodoDE temp;
@@ -47,7 +48,8 @@ public class ListaDEController implements Serializable {
      */
     public ListaDEController() {
     }
-     @PostConstruct
+
+    @PostConstruct
     private void iniciar() {
         listaPerrosDE = new ListaDE();
         // Conectaría a un archivo plano o a una base de datos para llenar la lista de perros
@@ -58,6 +60,7 @@ public class ListaDEController implements Serializable {
         listaPerrosDE.adicionarAlInicio(new Perro("Rocky", (byte) 4, (byte) 5, "macho"));
         perroMostrar = listaPerrosDE.getCabeza().getDato();
         temp = listaPerrosDE.getCabeza();
+
         inicializarModelo();
     }
 
@@ -117,7 +120,6 @@ public class ListaDEController implements Serializable {
         this.seleccionUbicacion2 = seleccionUbicacion2;
     }
 
-    
     public void irSiguiente() {
         //if(temp.getSiguiente()!=null)
         //{
@@ -126,7 +128,8 @@ public class ListaDEController implements Serializable {
         //}
         inicializarModelo();
     }
-        public void irAnterior() {
+
+    public void irAnterior() {
         //if(temp.getSiguiente()!=null)
         //{
         temp = temp.getAnterior();
@@ -155,14 +158,15 @@ public class ListaDEController implements Serializable {
     public void invertir() {
         listaPerrosDE.invertirDE();
         irPrimero();
+        
         inicializarModelo();
     }
 
     public void intercambiar() {
         listaPerrosDE.intercambiarPosiciones(seleccionUbicacion1, seleccionUbicacion2);
         irPrimero();
-        // inicializarModelo();
-       
+       inicializarModelo();
+        pintarIntercambio();
 
     }
 
@@ -174,22 +178,19 @@ public class ListaDEController implements Serializable {
         this.seleccionUbicacion1 = seleccionUbicacion;
     }
 
-    
-          public void eliminar(byte numero) {
+    public void eliminar(byte numero) {
 
-        
-        if(temp.getSiguiente() != null){    
-        listaPerrosDE.eliminarActualDE(numero);       
+        if (temp.getSiguiente() != null) {
+            listaPerrosDE.eliminarActualDE(numero);
             irPrimero();
             inicializarModelo();
-        }else{
+        } else {
             listaPerrosDE.eliminarActualDE(numero);
             perroMostrar = new Perro();
             inicializarModelo();
-            
-            
-    }}
-    
+
+        }
+    }
 
     public void encontrarPerro() {
 
@@ -245,7 +246,10 @@ public class ListaDEController implements Serializable {
                 Element perroPintar = new Element(ayudante.getDato().getNombre(), posX + "em", posY + "em");
 
                 perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.BOTTOM_RIGHT)); //Adicionar punto para la conexión (Derecha para la salida)
-                perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.TOP)); //Adicionar punto para la conexión (izquierda para la llegada)
+                perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.TOP_RIGHT)); //Adicionar punto para la conexión (izquierda para la llegada)
+                perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.TOP_LEFT)); //Adicionar punto para la conexión (izquierda para la salida hacia atras)
+                perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.BOTTOM_LEFT)); //Adicionar punto para la conexión (izquierda para la llegada)
+
                 if (ayudante.getDato().getNumero() == perroMostrar.getNumero()) {
                     perroPintar.setStyleClass("ui-diagram-success"); //Cambiar el estilo del elemento seleccionado
                 }
@@ -266,6 +270,7 @@ public class ListaDEController implements Serializable {
             for (int i = 0; i < model.getElements().size() - 1; i++) { //Crear conexiones menos en el último
                 //Se crea unaconexión i = actual con i+1 = siguiente
                 model.connect(createConnection(model.getElements().get(i).getEndPoints().get(0), model.getElements().get(i + 1).getEndPoints().get(1), null));
+                model.connect(createConnection(model.getElements().get(i + 1).getEndPoints().get(2), model.getElements().get(i).getEndPoints().get(3), null));
 
             }
         }
@@ -301,23 +306,34 @@ public class ListaDEController implements Serializable {
         }
     }
 
-    public void pintarExtremos() {
+    public void pintarIntercambio() {
+
         model = new DefaultDiagramModel();
         model.setMaxConnections(-1);
         if (listaPerrosDE.getCabeza() != null) {
             NodoDE ayudante = listaPerrosDE.getCabeza();
+            NodoDE ayudante1 = listaPerrosDE.getCabeza();
+            int contador = 0;
+            int contador1 = 0;
+
             int posX = 2;
             int posY = 2;
             while (ayudante != null) {
                 Element perroPintar = new Element(ayudante.getDato().getNombre(), posX + "em", posY + "em");
-                //Se pinta el dato primero y ultimo 
-                if (ayudante.getSiguiente() == null || ayudante == temp) {
-                    perroPintar.setStyleClass("ui-diagram-success"); //Cambia el color de los elementos primero y ultimo
+            
+                if (contador == seleccionUbicacion1-1 && ayudante == temp) {
+                    perroPintar.setStyleClass("ui-diagram-success");                 
                 }
+                 if (contador1 == seleccionUbicacion2-1 && ayudante1 == temp) {
+                        perroPintar.setStyleClass("ui-diagram-success");
+                    }
                 perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.RIGHT));
                 perroPintar.addEndPoint(new BlankEndPoint(EndPointAnchor.LEFT));
                 model.addElement(perroPintar);
                 ayudante = ayudante.getSiguiente();
+                ayudante1 = ayudante1.getSiguiente();
+                contador++;
+                contador1++;
                 posX = posX + 5;
                 posY = posY + 5;
             }
@@ -326,7 +342,7 @@ public class ListaDEController implements Serializable {
             model.setDefaultConnector(connector);
             for (int i = 0; i < model.getElements().size() - 1; i++) {
                 model.connect(createConnection(model.getElements().get(i).getEndPoints().get(0), model.getElements().get(i + 1).getEndPoints().get(1), null));
-               
+
             }
         }
     }
@@ -334,7 +350,7 @@ public class ListaDEController implements Serializable {
     public String irCrearPerro() {
 
         perroEncontrado = new Perro();
-        return "crear";
+        return "crearDE";
     }
 
     public void guardarPerro() {
@@ -351,7 +367,7 @@ public class ListaDEController implements Serializable {
         }
         //  listaPerros.adicionarNodo(perroEncontrado);
         perroEncontrado = new Perro();
-        JsfUtil.addSuccessMessage("Se ha adicionado el perro a la lista");
+        JsfUtil.addSuccessMessage("Se ha adicionado el perro a la lista DE");
 
     }
 
@@ -361,8 +377,8 @@ public class ListaDEController implements Serializable {
         inicializarModelo();
         return "home";
     }
-  
-     public String irListaDE() {
+
+    public String irListaDE() {
 
         perroEncontrado = new Perro();
         inicializarModelo();
