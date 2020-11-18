@@ -45,11 +45,12 @@ and open the template in the editor.
             </p:selectOneMenu>
 
             <p:commandButton id="btn_jugar" value="#{controladorTingoBean.botonJugar}" style="background-color: #{controladorTingoBean.colorBoton} !important;"
-                             action="#{controladorTingoBean.controlarCiclo()}" update="formularioJuego" /> 
+                             action="#{controladorTingoBean.controlarCiclo()}" update="formularioJuego  " /> 
 
             <p:poll interval="2" listener="#{controladorTingoBean.iniciarJuego()}" update="diagrama" rendered="#{controladorTingoBean.estadoCiclo}"/>
 
 
+                
 
         </h:form>
         <p:diagram id="diagrama" value="#{controladorTingoBean.model}" style="height:600px" styleClass="ui-widget-content" />

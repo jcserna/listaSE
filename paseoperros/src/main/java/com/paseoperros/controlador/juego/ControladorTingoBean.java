@@ -466,6 +466,10 @@ for (int i = 0; i <= model.getElements().size() - 1; i++) {
         infanteGuardar = new Infante();
         return "crear";
     }
+    
+    public String irConfiguracion(){
+        return "configurar";
+    }
 
     public void retirarPerdedor() {
 

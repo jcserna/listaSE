@@ -7,8 +7,7 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+
         <title>Paseo de perros</title>
         <style type="text/css">
             .ui-diagram-element {   
@@ -54,7 +53,14 @@
                                 <p:menuitem value="Ingresar Perro" action="#{listaSEController.irCrearPerro()}" />
                                 <p:menuitem value="Ingresar Perro listaDE" action="#{listaDEController.irCrearPerro()}" />
                                 <p:menuitem value="Lista Perros Doblemente enlzada" action="#{listaDEController.irListaDE}" />
+
                             </p:submenu>
+                            <p:submenu label="Juego Tingo Tingo Tango" icon="pi pi-briefcase">
+                                <p:menuitem value="Juego Tingo Tingo Tango" action="#{controladorTingoBean.irTingoTango()}" />
+                                <p:menuitem value="Ingresar Infante" action="#{controladorTingoBean.irCrearInfante()}" />
+                                <p:menuitem value="Configurar" action="#{controladorTingoBean.irConfiguracion()}" />
+                            </p:submenu>
+
                             <p:menuitem value="Open" url="#" />
                             <p:separator />
                             <p:menuitem value="Quit" url="#" />
@@ -71,7 +77,7 @@
 
         <div id="bottom">
             <center>
-               
+
                 <ui:insert name="bottom">
 
                 </ui:insert>
