@@ -9,6 +9,8 @@ import co.edu.umanizales.listase.modelo.ListaCircularDE;
 import co.edu.umanizales.listase.modelo.ListaDE;
 import co.edu.umanizales.listase.modelo.ListaSE;
 import co.edu.umanizales.listase.modelo.Perro;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  *
@@ -57,11 +59,19 @@ public class ProbarListaSE {
         Perro pastor = new Perro("Tobby", (byte) 3, (byte) 6, "macho");
         listaCircular.adicionarListaCircularDE(pastor);
 
-        listaCircular.adicionarListaCircularDE(new Perro("robin", (byte) 4, (byte) 5, "macho"));
+        ArrayList<Perro> perros = new ArrayList<Perro>(); 
+        perros.add(lulu);
+//        perros.add(firulais); 
+
+        
+        
+   
+        
+        // listaCircular.adicionarListaCircularDE(new Perro("robin", (byte) 4, (byte) 5, "macho"));
         //System.out.println(listaPerros.encontrarPosicion(4).getDato().getNombre());
         //listaPerros.adicionarNodoPorPosicion(3, new Perro("robin", (byte)4, (byte)5,"macho"));
-        
-        System.out.println(listaCircular.sumarAlReves("par"));
+
+//        System.out.println(listaCircular.sumarAlReves("par"));
 
     }
 
