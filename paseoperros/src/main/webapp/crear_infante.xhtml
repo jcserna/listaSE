@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./templates/principal.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    
+    <ui:define name="content">
+       
+         <p:growl id="grwlErrores"/>
+        <h:form id="formInfante">
+            <p:panel header="AGREGAR INFANTE">
+                <p:panelGrid columns="2">
+
+                    <h:outputText value="*Nombre del infante:"/>
+                    <p:inputText  id="Nombre" value="#{controladorTingoBean.infanteGuardar.nombre}" required="true" />
+                    <h:outputText value="*Identificador"/>
+                    <p:spinner value="#{controladorTingoBean.infanteGuardar.identificador}" required="true" min="1 "/>
+                    <p:outputLabel value="Género"/>
+                    <p:selectOneMenu id="genero" required="true" value="#{controladorTingoBean.infanteGuardar.genero}">                        
+                        <f:selectItem itemLabel="Seleccione" itemEscaped="true"/>
+                        <f:selectItem itemValue="true" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="false" itemLabel="Femenino"/>
+                    </p:selectOneMenu>
+                     
+                    
+                    <p:commandButton value="Guardar" update="formInfante, grwlErrores" action="#{controladorTingoBean.guardarInfante()}" />
+                    <p:commandButton value="Limpiar" update="formInfante"  />
+                    
+                </p:panelGrid>
+            </p:panel>
+             
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+

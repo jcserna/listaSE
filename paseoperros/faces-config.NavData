@@ -2,10 +2,14 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="ingresar_perros.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="crear_infante.xhtml" x="937" y="208" zoom="true"/>
         <Node id="listade.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="templates/principal.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="ingresarde.xhtml" x="650" y="300" zoom="true"/>
         <Node id="home.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="ingresar_perros.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="*" x="150" y="450" zoom="true"/>
+        <Node id="juegotingotango.xhtml" x="918" y="103" zoom="true"/>
+        <Node id="templates/principal.xhtml" x="150" y="300" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

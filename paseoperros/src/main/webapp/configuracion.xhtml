@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./templates/principal.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <ui:define name="content">
+
+        <p:growl id="grwlErrores"/>
+        <h:form id="formInfanteReingresar">
+            <p:panel header="REINGRESAR INFANTE">
+                <h:outputText value="Posición Ingreso   "/>
+                <p:spinner value="#{controladorTingoBean.posicionIngreso}" min="1" required="true"/>
+                <h:outputText value="  Número oportunidades  "/>
+                <p:spinner value="#{controladorTingoBean.nuevasOportunidades}" min="1" max="3" required="true"/>
+            </p:panel>
+            <p:panel id="panelInfantes" header="Listado Infantes - #{controladorTingoBean.listadoInfantes.size()}">
+
+                <p:dataTable id="tablaoportunidades" value="#{controladorTingoBean.listaOportunidades}" var="infante">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{infante.infante.nombre}" />
+                    </p:column>
+                    <p:column headerText="Oportunidades">
+                        <h:outputText value="#{infante.oportunidades}"  />
+                    </p:column>
+                    <p:commandButton  value="Agregar" action="#{controladorTingoBean.participarEnJuego()}"/>
+                </p:dataTable>
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Infante"/>
+                    <p:outputLabel value="#{controladorTingoBean.infanteMostrar.nombre}"/>
+
+                </p:panelGrid>
+                <p:commandButton value="Anterior"  >
+                    <p:ajax listener="#{controladorTingoBean.irAnterior()}" update="panelInfantes" />
+                </p:commandButton>
+                <p:commandButton value="Siguiente"  >
+                    <p:ajax listener="#{controladorTingoBean.irSiguiente()}" update="panelInfantes" />
+                </p:commandButton>
+
+                
+
+                <p:commandButton value="Reingresar" action="#{controladorTingoBean.reingresarInfante()}" />
+
+                
+                <p:selectOneMenu id="filtroGenero" value="#{controladorTingoBean.generoReingreso}" required="true">
+                    <f:selectItem itemLabel="Seleccione Género" itemEscaped="true"/>
+                    <f:selectItem itemValue="true" itemLabel="Masculino"/>
+                    <f:selectItem itemValue="false" itemLabel="Femenino"/>
+                </p:selectOneMenu>
+
+                <p:commandButton id="btn_reingresar_genero" value="Ingresar" action="#{controladorTingoBean.reingresarPorGenero()}" update="panelInfantes" /> 
+                <p:commandButton id="btn_retirar_genero" value="Retirar" action="#{controladorTingoBean.retirarPorGenero()}" update="panelInfantes, grwlErrores" /> 
+
+
+
+
+            </p:panel>
+
+          
+        </h:form>
+    </ui:define>
+
+</ui:composition>

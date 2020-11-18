@@ -56,7 +56,6 @@ public class ListaDEController implements Serializable {
         listaPerrosDE.adicionarNodoDE(new Perro("Pastor", (byte) 1, (byte) 3, "macho"));
         listaPerrosDE.adicionarNodoDE(new Perro("Lulú", (byte) 2, (byte) 4, "hembra"));
         listaPerrosDE.adicionarNodoDE(new Perro("Firulais", (byte) 3, (byte) 6, "macho"));
-
         listaPerrosDE.adicionarAlInicio(new Perro("Rocky", (byte) 4, (byte) 5, "macho"));
         perroMostrar = listaPerrosDE.getCabeza().getDato();
         temp = listaPerrosDE.getCabeza();

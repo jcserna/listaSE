@@ -32,7 +32,7 @@ import org.primefaces.model.diagram.overlay.LabelOverlay;
 public class ListaSEController implements Serializable {
 
     private ListaSE listaPerros;
-    private Perro perroMostrar ;
+    private Perro perroMostrar ;    
     private Nodo temp;
     private byte numero;
     private Perro perroEncontrado;
