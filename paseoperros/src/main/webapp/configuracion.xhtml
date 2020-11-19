@@ -21,7 +21,7 @@ and open the template in the editor.
                 <h:outputText value="Posición Ingreso   "/>
                 <p:spinner value="#{controladorTingoBean.posicionIngreso}" min="1" required="true"/>
                 <h:outputText value="  Número oportunidades  "/>
-                <p:spinner value="#{controladorTingoBean.nuevasOportunidades}" min="1" max="3" required="true"/>
+                <p:spinner value="#{controladorTingoBean.nuevasOportunidades}" min="1" max="#{controladorTingoBean.numeroOportunidades}" required="true"/>
             </p:panel>
             <p:panel id="panelInfantes" header="Listado Infantes - #{controladorTingoBean.listadoInfantes.size()}">
 

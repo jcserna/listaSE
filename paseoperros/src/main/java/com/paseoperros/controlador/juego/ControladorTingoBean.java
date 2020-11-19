@@ -77,8 +77,6 @@ public class ControladorTingoBean implements Serializable {
         listadoInfantes.add(new Infante("Ana", (byte) 2, false));
         listadoInfantes.add(new Infante("Sebastián", (byte) 3, true));
         listadoInfantes.add(new Infante("Laura", (byte) 4, false));
-        listadoInfantes.add(new Infante("a", (byte) 5, true));
-
         listaOportunidades = new ArrayList<>();
         tingoTango = new ListaCircularDE();
         infanteGuardar = new Infante();
@@ -431,6 +429,10 @@ for (int i = 0; i <= model.getElements().size() - 1; i++) {
     }
 
     public void controlarCiclo() {
+        if(tingoTango.getCabeza().getSiguiente()==tingoTango.getCabeza()){
+                            JsfUtil.addSuccessMessage("Ha ganado "+ tingoTango.getCabeza().getDato().getNombre());
+                        }
+        else{
         botonJugar = "Jugar";
         colorBoton = "blue";
         estadoCiclo = !estadoCiclo;
@@ -442,7 +444,7 @@ for (int i = 0; i <= model.getElements().size() - 1; i++) {
         retirarPerdedor();
         inicializarModelo();
     }
-
+    }
     public void iniciarJuego() {
         inicializarModelo();
 //        for (int i = 0; i < cantidadJugando - 1; i++) {
@@ -464,7 +466,7 @@ for (int i = 0; i <= model.getElements().size() - 1; i++) {
 
     public String irCrearInfante() {
         infanteGuardar = new Infante();
-        return "crear";
+        return "crearInfante";
     }
     
     public String irConfiguracion(){
@@ -482,6 +484,8 @@ for (int i = 0; i <= model.getElements().size() - 1; i++) {
                         tingoTango.eliminarEnSitio(ayudanteColor.getDato());
                         infanteMostrar = opor.getInfante();
                         cantidadJugando--;
+                        
+                        
                         inicializarModelo();
                     }
                 }

@@ -15,6 +15,7 @@ and open the template in the editor.
         Juego Tingo Tingo Tango
     </ui:define>
     <ui:define name="content">
+        <p:growl id="grwlErrores"/>
         <h:form>
             <p:panel id="panelInfantes" header="Listado Infantes - #{controladorTingoBean.listadoInfantes.size()}">
                 <h:outputText value="*Cantidad de infantes:"/>
@@ -45,9 +46,9 @@ and open the template in the editor.
             </p:selectOneMenu>
 
             <p:commandButton id="btn_jugar" value="#{controladorTingoBean.botonJugar}" style="background-color: #{controladorTingoBean.colorBoton} !important;"
-                             action="#{controladorTingoBean.controlarCiclo()}" update="formularioJuego  " /> 
+                             action="#{controladorTingoBean.controlarCiclo()}" update="formularioJuego, grwlErrores" /> 
 
-            <p:poll interval="2" listener="#{controladorTingoBean.iniciarJuego()}" update="diagrama" rendered="#{controladorTingoBean.estadoCiclo}"/>
+            <p:poll interval="1" listener="#{controladorTingoBean.iniciarJuego()}" update="diagrama" rendered="#{controladorTingoBean.estadoCiclo}"/>
 
 
                 
